@@ -20,9 +20,9 @@ Usage
        f.write chord.to_png(:label => "A")
     end
 
-	This will write a basic open string A chord with no frills to <tt>/tmp/A_major_.png</tt>:
+This will write a basic open string A chord with no frills to <tt>/tmp/A_major_.png</tt>:
 
-	![A - Major](https://github.com/dlbunker/chord_generator/raw/master/examples/A.png)
+![A - Major](https://github.com/dlbunker/chord_generator/raw/master/examples/A.png)
 
 Advanced Usage
 ---
