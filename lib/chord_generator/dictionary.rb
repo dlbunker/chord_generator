@@ -1,4 +1,4 @@
-module Jamming
+module ChordGenerator
   class Dictionary
     DICTIONARY = {
       "A"  => %w(x02220),
@@ -15,6 +15,24 @@ module Jamming
       "Fm" => %w(133111),
       "G"  => %w(320022 320002),
       "Gm" => %w(355333)      
+    }
+    
+    GUITAR_TUNINGS = {
+      :standard => ["E", "A", "D", "G", "B", "E"],
+      :drop_d => ["D", "A", "D", "G", "B", "E"]
+    }
+    
+    BASS_TUNINGS = {
+      :standard => ["E", "A", "D", "G"]
+    }
+
+    MANDOLIN_TUNINGS = {
+      :standard => ["G", "D", "A", "E"]
+    }
+
+    UKULELE_TUNINGS = {
+      :c6 => ["G", "C", "E", "A"],
+      :baritone => ["D", "G", "B", "E"]
     }
 
     def self.name_for(frets)

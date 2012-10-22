@@ -13,13 +13,13 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "jamming"
-  gem.homepage = "http://github.com/andmej/jamming"
+  gem.name = "chord_generator"
+  gem.homepage = "http://github.com/dlbunker/chord_generator"
   gem.license = "MIT"
-  gem.summary = %Q{A Ruby library to generate images of guitar chords}
-  gem.description = %Q{A Ruby library to generate images of guitar chords}
-  gem.email = "andmej@gmail.com"
-  gem.authors = ["Andrés Mejía"]
+  gem.summary = %Q{A Ruby library to generate images of guitar, ukulele, mandolin or banjo chords}
+  gem.description = %Q{A Ruby library to generate images of guitar, ukulele, mandolin or banjo chords}
+  gem.email = "mcirque@gmail.com"
+  gem.authors = ["Dan Bunker"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
@@ -43,12 +43,12 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "jamming #{version}"
+  rdoc.title = "chord generator #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

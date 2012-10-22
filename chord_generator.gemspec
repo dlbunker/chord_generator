@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{jamming}
-  s.version = "0.2.1"
+  s.name = "chord_generator"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Andrés Mejía"]
-  s.date = %q{2010-12-21}
-  s.description = %q{A Ruby library to generate images of guitar chords}
-  s.email = %q{andmej@gmail.com}
+  s.authors = ["Dan Bunker"]
+  s.date = "2012-10-22"
+  s.description = "A Ruby library to generate images of guitar, ukulele, mandolin or banjo chords"
+  s.email = "mcirque@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.markdown"
@@ -24,27 +24,19 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
-    "examples/Em7#9.png",
-    "jamming.gemspec",
-    "lib/jamming.rb",
-    "lib/jamming/chord.rb",
-    "lib/jamming/dictionary.rb",
-    "lib/jamming/png_formatter.rb",
-    "test/helper.rb",
-    "test/test_jamming.rb"
+    "test/helper.rb"
   ]
-  s.homepage = %q{http://github.com/andmej/jamming}
+  s.homepage = "http://github.com/dlbunker/chord_generator"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A Ruby library to generate images of guitar chords}
+  s.rubygems_version = "1.8.15"
+  s.summary = "A Ruby library to generate images of guitar, ukulele, mandolin or banjo chords"
   s.test_files = [
     "test/helper.rb",
-    "test/test_jamming.rb"
+    "test/test_chords.rb"
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
@@ -53,12 +45,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<rdoc>, [">= 0"])
     else
       s.add_dependency(%q<rmagick>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<rdoc>, [">= 0"])
     end
   else
     s.add_dependency(%q<rmagick>, [">= 0"])
@@ -66,6 +60,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<rdoc>, [">= 0"])
   end
 end
 

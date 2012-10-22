@@ -1,75 +1,83 @@
-jamming
+chord_generator_
 ===
 
-Jamming is a Ruby library to generate images of guitar chords.
+A Ruby library to generate images of guitar, ukulele, mandolin or banjo chords
 
 Installation
 ---
 
-    gem install jamming
+    gem install chord_generator
 
 or if you are using Bundler, add this line to your Gemfile:
 
-    gem "jamming"
+    gem 'chord_generator'
     
 Usage
 ---
 
-    File.open("/tmp/old_good_jimi.png", 'w') do |f|
-       chord = Jamming::Chord.new("0-7-6-7-8-x")
-       f.write chord.to_png(:label => "Em7#9")
+    File.open("/tmp/A_major.png", 'w') do |f|
+       chord = ChordGenerator::Chord.new("x-0-2-2-2-0")
+       f.write chord.to_png(:label => "A")
     end
+
+	This will write a basic open string A chord with no frills to <tt>/tmp/A_major_.png</tt>:
+
+	![A - Major](https://github.com/dlbunker/chord_generator/raw/master/examples/A.png)
+
+Advanced Usage
+---
+
+	You can also add fingerings, tone intervals, root notes and bars with the following options
+
+	The chord code passed into the generator, at a minimum, specifies the string and fret.  So "x-0-2-2-2-0" means, muted 6th string, open 5th string, 2nd fret 4th string, etc.
+
+	If you want to add fingerings to each fretted note you need to enhance the chord code by adding a pipe to each played string followed by the finger number (open strings can be left blank)
     
-This will write Em7#9, <em>The Jimi Hendrix Chord</em>, to <tt>/tmp/old_good_jimi.png</tt>:
+	File.open("/tmp/A_major.png", 'w') do |f|
+	   chord = ChordGenerator::Chord.new("x-0|-2|1-2|2-2|3-0|")
+	   f.write chord.to_png(:label => "A with fingering")
+	end
 
-![Em7#9 - The Jimi Hendrix Chord](https://github.com/andmej/jamming/raw/master/examples/Em7%239.png)
+	![A - with fingering](https://github.com/dlbunker/chord_generator/raw/master/examples/A_with_fingering.png)
 
-### Auto labels
 
-Jamming has an internal database with some chords that lets her auto-identify some chords. So, for example:
+	If you want to add interval tones to each fretted note you need to enhance the chord code by adding a pipe to each played string followed by the finger number (open strings can be left blank) followed by the interval
+    
+	File.open("/tmp/A_major.png", 'w') do |f|
+	   chord = ChordGenerator::Chord.new("x-0||1-2|1|5-2|2|1-2|3|3-0||5")
+	   f.write chord.to_png(:label => "A with intervals")
+	end
 
-     File.open("/tmp/a_major.png", 'w') do |f|
-         chord = Jamming::Chord.new("x-0-2-2-2-0")
-         f.write chord.to_png
-     end
-     
-will generate an image like this:
+	![A - with intervals](https://github.com/dlbunker/chord_generator/raw/master/examples/A_with_intervals.png)
 
-![A Major](http://jamming.heroku.com/chords/x02220)
+	If you want to add bars and root notes to your diagrams simply enhance the code with more pipes.  For each fret/string position in the code you have the following options (fret number|fingering|interval|B|R) where B and R stand for Bar and Root note.  For Barred notes to work correctly there must be a matching bar notation on the same fret but different string.
+    
+	File.open("/tmp/A_major_bar.png", 'w') do |f|
+	   chord = ChordGenerator::Chord.new("5|1|1|B|R-7|3|5-7|4|1-6|2|3-5|1|5-5|1|1|B")
+	   f.write chord.to_png(:label => "A bar with root")
+	end
 
-(Notice the _A_ label even if you never explicitly declared it.)
+	![A - bar with root](https://github.com/dlbunker/chord_generator/raw/master/examples/A_bar_with_root.png)
+	
+	To specify a different instrument or tuning, pass in a supported tuning from the Dictionary.
 
-If you'd like to override this behavior, pass `:label => false` to the `to_png` method (Use exactly `:label => false`, as `:label => nil` still triggers the auto-labeling behavior).
+    chord = ChordGenerator::Chord.new("0||1-0||5-2|2|3-3|3|1")
+    chord.to_png({:label => "G Mandolin", :tuning => ChordGenerator::Dictionary::MANDOLIN_TUNINGS[:standard]})
 
-If you find a chord that is not auto-labeled but you'd like it to be, please add it [to this file](https://github.com/andmej/jamming/blob/master/lib/jamming/dictionary.rb) and send a pull request.
-
-### Front-end
-
-Jamming is better served with a front-end that takes care of generating the images for you. Check out [this tiny Sinatra app](https://github.com/andmej/jamming_frontend) that does just that.
+	![G - mandolin](https://github.com/dlbunker/chord_generator/raw/master/examples/G.png)
 
 Thanks
 ---
 
-Some code based on [ander/chords](https://github.com/ander/chords), thanks!
+Lot's of code based on [andmej/jamming](https://github.com/andmej/jamming), thanks!
 
-Contributing to jamming
----
  
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
-
 Copyright
 ---
 
-Copyright (c) 2010 Andrés Mejía ([Aprender guitarra](http://guitarra-con-andres.com)). See LICENSE.txt for
+Copyright (c) 2012 Dan Bunker ((http://totalguitarandbass.com)). See LICENSE.txt for
 further details.
 
 Other important notes
 ---
 
-You suck if you don't play guitar, kthxbai.
