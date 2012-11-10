@@ -12,6 +12,7 @@ module ChordGenerator
 
     def print(options={})
       @label = options[:label]
+      @hide_fret_numbers = options[:hide_fret_numbers]
       
       @max_fret = @frets.collect {|val| val[:fret] }.compact.max
       @min_fret = @frets.collect {|val| val[:fret] }.compact.delete_if { |f| f == 0 }.min
@@ -65,16 +66,18 @@ module ChordGenerator
           end
         end
         
-        (@number_of_frets).times do |i|
-          canvas.text(margin_side_of_chord - radius_of_finger - 4, i*height_of_fret+margin_top_of_chord + height_of_fret / 2 + 10) do |txt|
-            txt.tspan(@min_fret + i).styles(
-              :text_anchor => 'end',
-              :font_size => 24,
-              :font_family => 'helvetica',
-              :fill => 'black')
+        if @hide_fret_numbers
+          (@number_of_frets).times do |i|
+            canvas.text(margin_side_of_chord - radius_of_finger - 4, i*height_of_fret+margin_top_of_chord + height_of_fret / 2 + 10) do |txt|
+              txt.tspan(@min_fret + i).styles(
+                :text_anchor => 'end',
+                :font_size => 24,
+                :font_family => 'helvetica',
+                :fill => 'black')
+            end
           end
         end
-
+        
         bar_drawn = false
         
         @strings.each_with_index do |note, i|
