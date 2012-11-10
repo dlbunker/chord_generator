@@ -66,7 +66,7 @@ module ChordGenerator
           end
         end
         
-        if @hide_fret_numbers
+        unless @hide_fret_numbers
           (@number_of_frets).times do |i|
             canvas.text(margin_side_of_chord - radius_of_finger - 4, i*height_of_fret+margin_top_of_chord + height_of_fret / 2 + 10) do |txt|
               txt.tspan(@min_fret + i).styles(
