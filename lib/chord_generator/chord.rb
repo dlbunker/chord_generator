@@ -41,7 +41,7 @@ module ChordGenerator
         interval = fret[2] if fret[2]
         
         bar = false
-        bar = true if fret[3]
+        bar = true if fret[3] && fret[3] != ""
         
         root = false
         root = true if fret[4]

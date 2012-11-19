@@ -22,7 +22,7 @@ module ChordGenerator
       @max_bar_string = 0
       
       @frets.each_with_index do |fret, index|
-        if fret[:barred_note] && @min_bar_string < 0
+        if fret[:barred_note] && fret[:barred_note] != "" && @min_bar_string < 0
           @min_bar_string = index
           @max_bar_string = index
         elsif fret[:barred_note]
